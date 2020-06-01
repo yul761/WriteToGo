@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SingleCard from "./subComponents/SingleCard";
 
-export default function Preview({ setCurCardIndex }) {
+export default function Preview({ setCurCardIndex, handleDeleteData }) {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function Preview({ setCurCardIndex }) {
       controls[index].children[1].addEventListener("click", () => {
         console.log(index);
         deleteCard(index);
+        handleDeleteData(index);
       });
     });
 

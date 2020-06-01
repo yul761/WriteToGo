@@ -15,7 +15,6 @@ const initializeData = {
   ],
   version: "2.17.0",
 };
-
 export default function MainPage() {
   const [data, setData] = useState("");
   const [curCardIndex, setCurCardIndex] = useState(0);
@@ -33,25 +32,40 @@ export default function MainPage() {
 
   const prevIndex = usePrevious(curCardIndex);
 
+  const handleDeleteData = (index) => {
+    console.log(wholeData);
+    console.log(wholeData.slice(0, index));
+    console.log(wholeData.slice(index + 1));
+    console.log([...wholeData.slice(0, index), ...wholeData.slice(index + 1)]);
+    /***********when set wholedata using holder, value of holder just changes*******/
+    var holder = [];
+    holder.push(...wholeData);
+    console.log(holder);
+    holder.splice(index, 1);
+    console.log(index);
+
+    console.log(holder);
+    setWholeData(holder);
+    console.log(holder);
+    /********************************************************************************/
+    setEditorContent(initializeData);
+    setCurCardIndex(index - 1);
+    setData(initializeData);
+  };
   const handleSave = async (instance) => {
     const savedData = await instance.save();
     setData(savedData);
-    console.log(savedData);
     setEnableReinitialize(false);
   };
-
-  //   useEffect(() => {
-  //     //save data to curCardIndex of wholedata
-  //     var temp = wholeData;
-  //     temp.splice(curCardIndex, 1, data);
-  //     setWholeData(temp);
-  //     console.log(wholeData);
-  //   }, [prevIndex]);
 
   useEffect(() => {
     //save data to curCardIndex of wholedata
     var temp = wholeData;
+    console.log(wholeData);
+    console.log(temp);
+    console.log(data);
     temp.splice(prevIndex, 1, data);
+    console.log(temp);
     setWholeData(temp);
     console.log(wholeData);
 
@@ -95,6 +109,20 @@ export default function MainPage() {
     }
   }, [data]);
 
+  // re-render the input of cards when delete one cards
+  useEffect(() => {
+    var cards = document.querySelectorAll(".MuiCard-root");
+    console.log(wholeData);
+    if (wholeData[0] !== "") {
+      wholeData.forEach((data, index) => {
+        var innerHTML = reformatinput(data.blocks);
+        var card = cards[index];
+        console.log(card);
+        card.children[0].children[0].innerHTML = innerHTML;
+      });
+    }
+  }, [wholeData]);
+
   const reformatinput = (array) => {
     var string = "";
     array.forEach((el) => {
@@ -109,7 +137,10 @@ export default function MainPage() {
         <ThumbNail />
       </div>
       <div className="MainPage__preview">
-        <Preview setCurCardIndex={setCurCardIndex} />
+        <Preview
+          setCurCardIndex={setCurCardIndex}
+          handleDeleteData={handleDeleteData}
+        />
       </div>
       <div className="MainPage__editor">
         <Editor
