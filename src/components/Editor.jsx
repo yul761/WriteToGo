@@ -9,6 +9,8 @@ export default function Editor({
   wholeData,
   usePrevious,
   data,
+  setEnableReinitialize,
+  enableReinitialize,
 }) {
   var editorInstance = null;
   const [editorData, setEditorData] = useState({});
@@ -38,6 +40,7 @@ export default function Editor({
 
   useEffect(() => {
     console.log(editorData);
+    setEnableReinitialize(true);
   }, [editorData]);
 
   return (
@@ -48,7 +51,7 @@ export default function Editor({
           handleSave(editorInstance);
         }}
         data={editorData}
-        enableReInitialize={true}
+        enableReInitialize={enableReinitialize}
         tools={EDITOR_JS_TOOLS}
       />
     </>

@@ -21,6 +21,7 @@ export default function MainPage() {
   const [curCardIndex, setCurCardIndex] = useState(0);
   const [wholeData, setWholeData] = useState([]);
   const [editorContent, setEditorContent] = useState(initializeData);
+  const [enableReinitialize, setEnableReinitialize] = useState(false);
 
   const usePrevious = (value) => {
     const ref = useRef();
@@ -36,6 +37,7 @@ export default function MainPage() {
     const savedData = await instance.save();
     setData(savedData);
     console.log(savedData);
+    setEnableReinitialize(false);
   };
 
   //   useEffect(() => {
@@ -66,7 +68,7 @@ export default function MainPage() {
           {
             type: "paragraph",
             data: {
-              text: "new dom",
+              text: "",
             },
           },
         ],
@@ -116,6 +118,8 @@ export default function MainPage() {
           editorContent={editorContent}
           wholeData={wholeData}
           usePrevious={usePrevious}
+          enableReinitialize={enableReinitialize}
+          setEnableReinitialize={setEnableReinitialize}
         />
       </div>
     </div>
