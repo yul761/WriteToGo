@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.MainPage {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.MainPage__thumbNail {
+  width: 15%;
+  height: 80%;
+}
+
+.MainPage__preview {
+  width: 25%;
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: scroll !important;
+}
+
+.MainPage__editor {
+  width: 50%;
+  height: 80%;
+  margin-top: 1%;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#Card__controls {
+  width: 80%;
+  height: 3%;
+  margin: 0 2%;
+  display: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.MuiCard-root {
+  background-color: #e6e6e6 !important;
+  width: 80%;
+  height: 15%;
+  min-height: 150px;
+  margin: 5% 2%;
+  border-radius: 24px !important;
+  overflow: scroll !important;
+}
+
+#editor-js {
+  width: 100%;
+  height: 100%;
+}
+/*# sourceMappingURL=main.css.map */
