@@ -21,6 +21,7 @@ export default function MainPage() {
   const [wholeData, setWholeData] = useState([]);
   const [editorContent, setEditorContent] = useState(initializeData);
   const [enableReinitialize, setEnableReinitialize] = useState(false);
+  const [files, setFiles] = useState([]);
 
   const usePrevious = (value) => {
     const ref = useRef();
@@ -32,20 +33,16 @@ export default function MainPage() {
 
   const prevIndex = usePrevious(curCardIndex);
 
-  const handleDeleteData = (index) => {
-    console.log(wholeData);
-    console.log(wholeData.slice(0, index));
-    console.log(wholeData.slice(index + 1));
-    console.log([...wholeData.slice(0, index), ...wholeData.slice(index + 1)]);
+  const handleDeleteData = async (index) => {
     /***********when set wholedata using holder, value of holder just changes*******/
     var holder = [];
+    console.log(wholeData);
     holder.push(...wholeData);
     console.log(holder);
-    holder.splice(index, 1);
+    holder.splice(index, 1, initializeData);
     console.log(index);
 
-    console.log(holder);
-    setWholeData(holder);
+    await setWholeData(holder);
     console.log(holder);
     /********************************************************************************/
     setEditorContent(initializeData);
@@ -114,8 +111,8 @@ export default function MainPage() {
     var cards = document.querySelectorAll(".MuiCard-root");
     console.log(wholeData);
     if (wholeData[0] !== "") {
-      wholeData.forEach((data, index) => {
-        var innerHTML = reformatinput(data.blocks);
+      files.forEach((data, index) => {
+        var innerHTML = reformatinput(wholeData[index].blocks);
         var card = cards[index];
         console.log(card);
         card.children[0].children[0].innerHTML = innerHTML;
@@ -140,6 +137,8 @@ export default function MainPage() {
         <Preview
           setCurCardIndex={setCurCardIndex}
           handleDeleteData={handleDeleteData}
+          files={files}
+          setFiles={setFiles}
         />
       </div>
       <div className="MainPage__editor">

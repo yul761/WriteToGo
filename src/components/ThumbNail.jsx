@@ -5,9 +5,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import FolderIcon from "@material-ui/icons/Folder";
 import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
 import StarIcon from "@material-ui/icons/Star";
 import InboxIcon from "@material-ui/icons/Inbox";
 import LabelIcon from "@material-ui/icons/Label";
@@ -27,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ThumbNail() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  // const [open, setOpen] = React.useState(true);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  // const handleClick = () => {
+  //   setOpen(!open);
+  // };
 
   return (
     <List

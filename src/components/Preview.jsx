@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import SingleCard from "./subComponents/SingleCard";
 
-export default function Preview({ setCurCardIndex, handleDeleteData }) {
-  const [files, setFiles] = useState([]);
+export default function Preview({
+  setCurCardIndex,
+  handleDeleteData,
+  files,
+  setFiles,
+}) {
+  //   const [files, setFiles] = useState([]);
 
   useEffect(() => {
     var start = SingleCard();
